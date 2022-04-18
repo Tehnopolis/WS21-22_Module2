@@ -115,7 +115,7 @@ final class Request {
             }
         }
         else {
-            Request::finishError('Токен авторизации не был предоставлен', 400);
+            Request::finishError('Login failed', 400);
             return false;
         }
     }
@@ -164,16 +164,16 @@ final class Request {
         ), $code);
     }
     public static function finishErrorUnauthorized() {
-        Request::finishError('Ошибка аутентификации', 403);
+        Request::finishError('Login failed', 403);
     }
     public static function finishErrorForbidden() {
-        Request::finishError('Доступ запрещен', 403);
+        Request::finishError('Forbidden for you', 403);
     }
     public static function finishErrorValidation(array $fieldsErrors) {
         Request::result(array(
             'error' => array(
                 'code' => 422,
-                'message' => 'Ошибка валидации',
+                'message' => 'Validation error',
                 'errors' => $fieldsErrors
             )
         ), 422);
